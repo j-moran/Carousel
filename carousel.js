@@ -1,32 +1,14 @@
-var next = function(){
-	current.deleteClass('.current');
-
-}
-
-//select all items and current selected item
 var items = document.querySelectorAll('.slide');
-var others = document.querySelectorAll('.inactive');
 var current = '';
 var next = document.querySelector('#next');
 var prev = document.querySelector('#previous');
 var buttons = document.querySelectorAll('button');
 var slideCount = 0;
 
+//Start slideshow on first image
 init();
 
-// for(var i = 0; i < buttons.length; i++){
-// 	buttons[i].addEventListener('click', function(){
-// 		switch(this.id){
-// 			case 'previous':
-// 				previousSlide();
-// 				break;
-// 			case 'next':
-// 				nextSlide();
-// 				break;
-// 		}
-// 	});
-// };
-
+//Event listeners for buttons
 next.addEventListener('click', function(){
 	changeSlide('next');
 });
@@ -35,6 +17,7 @@ prev.addEventListener('click', function(){
 	changeSlide('previous');
 });
 
+//Function for slide change
 function changeSlide(option){
 	switch(option){
 		case 'previous':
@@ -56,6 +39,7 @@ function changeSlide(option){
 	current.className = 'slide active';
 };
 
+//Initialization function
 function init(){
 	items[slideCount].className = 'slide active';
 	current = items[slideCount];
