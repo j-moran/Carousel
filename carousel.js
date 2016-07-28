@@ -9,34 +9,51 @@ var others = document.querySelectorAll('.inactive');
 var current = '';
 var next = document.querySelector('#next');
 var prev = document.querySelector('#previous');
+var buttons = document.querySelectorAll('button');
 var slideCount = 0;
 
 init();
 
-//cycle through 'images'
-	//Create click event for arrow
+// for(var i = 0; i < buttons.length; i++){
+// 	buttons[i].addEventListener('click', function(){
+// 		switch(this.id){
+// 			case 'previous':
+// 				previousSlide();
+// 				break;
+// 			case 'next':
+// 				nextSlide();
+// 				break;
+// 		}
+// 	});
+// };
+
 next.addEventListener('click', function(){
-	nextSlide();
+	changeSlide('next');
 });
 
 prev.addEventListener('click', function(){
-	previousSlide();
+	changeSlide('previous');
 });
 
-function nextSlide(){
-	slideCount += 1
-
-	if(slideCount > items.length - 1){
-		slideCount = 0;
-	}
+function changeSlide(option){
+	switch(option){
+		case 'previous':
+			slideCount -= 1;
+			if(slideCount < 0){
+				slideCount = items.length - 1;
+			};
+			break;
+		case 'next':
+			slideCount += 1;
+			if(slideCount > items.length - 1){
+				slideCount = 0;
+			};
+			break;
+	};
 
 	current.className = ('slide inactive');
 	current = items[slideCount];
 	current.className = 'slide active';
-};
-
-function previousSlide(){
-
 };
 
 function init(){
